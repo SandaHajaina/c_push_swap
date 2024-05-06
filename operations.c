@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sranaivo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 10:18:54 by sranaivo          #+#    #+#             */
-/*   Updated: 2024/05/01 10:18:57 by sranaivo         ###   ########.fr       */
+/*   Created: 2024/05/04 11:21:43 by sranaivo          #+#    #+#             */
+/*   Updated: 2024/05/04 11:22:05 by sranaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "stdio.h"
 
-int main()
+void	swap(t_stack **stack)
 {
-	t_stack	*a;
-	t_stack *tmp;
+	t_stack	*temp;
 
-	a = stack_new(5);
-	tmp = a;
-	add_back(&a, 4);
-	add_back(&a, 10);
-	add_back(&a, 13);
-
-
-	while(1)
-	{
-		printf("%d\n", a->n);
-		if(a->next == NULL)
-			break ;
-		a = a->next;
-	}
-	free_stack(&tmp);
-	return (0);
+	temp = (*stack)->next;
 }
