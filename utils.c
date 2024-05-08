@@ -44,3 +44,14 @@ void	add_back(t_stack **stack, int n)
 	temp = stack_last(*stack);
 	temp->next = new;
 }
+
+void	add_front(t_stack **stack, int n)
+{
+	t_stack	*new;
+
+	if (!(*stack))
+		return ;
+	new = stack_new(n);
+	new->next = (*stack);
+	*stack = new;
+}

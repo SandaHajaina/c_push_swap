@@ -24,11 +24,15 @@ typedef struct s_stack
 
 //operations
 void	swap(t_stack	**stack);
+void	push(t_stack **src, t_stack **target);
+void	rotate(t_stack **stack);
+void	reverse(t_stack **reverse);
 
 //utils
 t_stack	*stack_new(int n);
 t_stack	*stack_last(t_stack	*stack);
 void	add_back(t_stack **stack, int n);
+void	add_front(t_stack **stack, int n);
 
 //free
 void	free_stack(t_stack **stack);
