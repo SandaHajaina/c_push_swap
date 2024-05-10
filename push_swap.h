@@ -19,6 +19,7 @@
 typedef struct s_stack
 {
 	int				n;
+	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -27,6 +28,21 @@ void	swap(t_stack	**stack);
 void	push(t_stack **src, t_stack **target);
 void	rotate(t_stack **stack);
 void	reverse(t_stack **reverse);
+
+void	sa(t_stack	**a);
+void	sb(t_stack	**b);
+void	ss(t_stack	**a, t_stack **b);
+
+void	pa(t_stack **b, t_stack **a);
+void	pb(t_stack **a, t_stack **b);
+
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
 
 //utils
 t_stack	*stack_new(int n);
