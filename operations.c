@@ -17,6 +17,8 @@ void	swap(t_stack **stack)
 	t_stack	*temp;
 	int		n;
 
+	if (!(*stack))
+		return ;
 	if ((*stack)->next == NULL || !(*stack))
 		return ;
 	temp = (*stack)->next;

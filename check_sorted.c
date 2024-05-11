@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   check_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sranaivo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 14:49:50 by sranaivo          #+#    #+#             */
-/*   Updated: 2024/05/10 14:49:52 by sranaivo         ###   ########.fr       */
+/*   Created: 2024/05/11 14:13:16 by sranaivo          #+#    #+#             */
+/*   Updated: 2024/05/11 14:13:18 by sranaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack)
+/*int	check_sorted(t_stack **stack)
 {
-	t_stack	*max;
+	t_stack	*temp;
+	t_stack	*next;
 
-	max = stack_max(*stack);
-	if ((*stack)->n == max->n)
-		ra(stack);
-	else if ((*stack)->next->n == max->n)
-		rra(stack);
-	if ((*stack)->n > (*stack)->next->n)
-		sa(stack);
-}
+	if (!(*stack))
+		return (0);
+	temp = *stack;
+	next = NULL;
+	while(temp)
+	{
+		next = temp->next;
+		if(temp->n <= next->n)
+			return (0);
+		temp = next;
+	}
+	return (1);
+}*/

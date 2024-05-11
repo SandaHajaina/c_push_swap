@@ -15,11 +15,26 @@
 
 int main()
 {
+	t_stack *a;
+	t_stack	*max;
+
+	a = stack_new(2);
+	add_back(&a, 3);
+	add_back(&a, 6);
+	add_back(&a, 8);
+	add_back(&a, 20);
+
+	printf("%d\n", check_sorted(&a));
+}
+
+/*int main()
+{
 	t_stack	*a;
 	t_stack	*b;
 	t_stack *tmp;
 
 	a = stack_new(5);
+	b = NULL;
 	tmp = a;
 	add_back(&a, 4);
 	add_back(&a, 10);
@@ -28,6 +43,10 @@ int main()
 	add_back(&a, 15);
 
 	sa(&a);
+	ra(&a);
+	rb(&a);
+	ss(&a, &b);
+	pb(&a, &b);
 	b = stack_new(99);
 	while(1)
 	{
@@ -47,4 +66,4 @@ int main()
 	free_stack(&tmp);
 	free_stack(&b);
 	return (0);
-}
+}*/

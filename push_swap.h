@@ -53,4 +53,14 @@ void	add_front(t_stack **stack, int n);
 //free
 void	free_stack(t_stack **stack);
 
+//check_sorted
+int	check_sorted(t_stack **stack);
+
+//find min | max
+t_stack	*stack_max(t_stack *stack);
+t_stack	*stack_min(t_stack *stack);
+
+//sort_three
+void	sort_three(t_stack **stack);
+
 #endif
