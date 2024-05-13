@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -22,6 +23,10 @@ typedef struct s_stack
 	int				index;
 	struct s_stack	*next;
 }					t_stack;
+
+//algorithm
+void	sort_stack(t_stack **a, t_stack **b);
+int		find_rank(t_stack **stack, t_stack *to_find);
 
 //operations
 void	swap(t_stack	**stack);
@@ -49,6 +54,7 @@ t_stack	*stack_new(int n);
 t_stack	*stack_last(t_stack	*stack);
 void	add_back(t_stack **stack, int n);
 void	add_front(t_stack **stack, int n);
+int		count_node(t_stack *stack);
 
 //free
 void	free_stack(t_stack **stack);

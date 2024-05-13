@@ -56,3 +56,20 @@ void	add_front(t_stack **stack, int n)
 	new->next = (*stack);
 	*stack = new;
 }
+
+int	count_node(t_stack *stack)
+{
+	int		i;
+	t_stack	*temp;
+
+	if (!stack)
+		return (0);
+	i = 1;
+	temp = stack;
+	while(temp->next)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
+}

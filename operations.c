@@ -37,6 +37,9 @@ void	push(t_stack **src, t_stack **target)
 	if (!(*target))
 	{
 		n = (*src)->n;
+		temp = (*src)->next;
+		free(*src);
+		*src = temp;
 		*target = stack_new(n);
 	}
 	else

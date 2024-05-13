@@ -11,59 +11,31 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "stdio.h"
 
 int main()
 {
 	t_stack *a;
-	t_stack	*max;
-
-	a = stack_new(2);
-	add_back(&a, 3);
-	add_back(&a, 6);
-	add_back(&a, 8);
-	add_back(&a, 20);
-
-	printf("%d\n", check_sorted(&a));
-}
-
-/*int main()
-{
-	t_stack	*a;
+	t_stack	*min;
 	t_stack	*b;
-	t_stack *tmp;
 
-	a = stack_new(5);
-	b = NULL;
-	tmp = a;
-	add_back(&a, 4);
+	a = stack_new(200);
 	add_back(&a, 10);
-	add_back(&a, 13);
-	add_back(&a, 14);
-	add_back(&a, 15);
+	add_back(&a, 6);
+	add_back(&a, 9);
+	add_back(&a, 20);
+	add_back(&a, 12);
+	add_back(&a, -1);
+	add_back(&a, 0);
+	add_back(&a, 26);
+	b = NULL;
 
-	sa(&a);
-	ra(&a);
-	rb(&a);
-	ss(&a, &b);
-	pb(&a, &b);
-	b = stack_new(99);
-	while(1)
+	//sort_stack(&a, &b);
+	min = stack_min(a);
+	printf("%d\n", find_rank(&a, min));
+
+	/*while(a)
 	{
 		printf("%d\n", a->n);
-		if(a->next == NULL)
-			break ;
 		a = a->next;
-	}
-	printf("-------\n");
-	while(1)
-	{
-		printf("%d\n", b->n);
-		if(b->next == NULL)
-			break ;
-		b = b->next;
-	}
-	free_stack(&tmp);
-	free_stack(&b);
-	return (0);
-}*/
+	}*/
+}
