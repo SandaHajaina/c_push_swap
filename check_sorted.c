@@ -21,10 +21,10 @@ int	check_sorted(t_stack **stack)
 		return (0);
 	temp = *stack;
 	next = NULL;
-	while(temp->next)
+	while (temp->next)
 	{
 		next = temp->next;
-		if(temp->n >= next->n)
+		if (temp->n >= next->n)
 			return (0);
 		temp = next;
 	}

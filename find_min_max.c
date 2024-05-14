@@ -21,9 +21,9 @@ t_stack	*stack_max(t_stack *stack)
 	max = stack;
 	temp = stack;
 	n = stack->n;
-	while(temp)
+	while (temp)
 	{
-		if(n < temp->n)
+		if (n < temp->n)
 		{
 			max = temp;
 			n = temp->n;
@@ -42,9 +42,9 @@ t_stack	*stack_min(t_stack *stack)
 	min = stack;
 	temp = stack;
 	n = stack->n;
-	while(temp)
+	while (temp)
 	{
-		if(n > temp->n)
+		if (n > temp->n)
 		{
 			min = temp;
 			n = temp->n;

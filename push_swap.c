@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-int main()
+int	main(void)
 {
-	t_stack *a;
+	t_stack	*a;
 	t_stack	*min;
 	t_stack	*b;
 
 	a = stack_new(200);
-	add_back(&a, 10);
+	add_back(&a, -10);
 	add_back(&a, 6);
 	add_back(&a, 9);
 	add_back(&a, 20);
@@ -27,12 +27,10 @@ int main()
 	add_back(&a, -1);
 	add_back(&a, 0);
 	add_back(&a, 26);
-	b = NULL;
+	b = stack_min(a);
 
-	//sort_stack(&a, &b);
-	min = stack_min(a);
-	printf("%d\n", find_rank(&a, min));
-
+	printf("%d\n", get_index(a, b));
+	printf("%d\n", a->n);
 	/*while(a)
 	{
 		printf("%d\n", a->n);

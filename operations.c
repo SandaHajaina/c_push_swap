@@ -72,11 +72,11 @@ void	reverse(t_stack **stack)
 	t_stack	*current;
 	t_stack	*prev;
 
-	if(!(*stack) || (*stack)->next == NULL)
+	if (!(*stack) || (*stack)->next == NULL)
 		return ;
 	current = *stack;
 	prev = NULL;
-	while(current->next != NULL)
+	while (current->next != NULL)
 	{
 		prev = current;
 		current = current->next;

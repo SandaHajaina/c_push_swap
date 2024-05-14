@@ -25,21 +25,21 @@ t_stack	*stack_new(int n)
 	return (new);
 }
 
-t_stack	*stack_last(t_stack	*stack)
+t_stack	*stack_last(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
 	while (stack->next != NULL)
 		stack = stack->next;
-	return stack;
+	return (stack);
 }
 
 void	add_back(t_stack **stack, int n)
 {
-	t_stack *new;
-	t_stack *temp;
+	t_stack	*new;
+	t_stack	*temp;
 
-	if(!stack)
+	if (!stack)
 		return ;
 	new = stack_new(n);
 	temp = stack_last(*stack);
@@ -66,7 +66,7 @@ int	count_node(t_stack *stack)
 		return (0);
 	i = 1;
 	temp = stack;
-	while(temp->next)
+	while (temp->next)
 	{
 		i++;
 		temp = temp->next;
