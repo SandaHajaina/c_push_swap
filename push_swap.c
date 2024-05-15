@@ -26,11 +26,10 @@ int	main(void)
 	add_back(&a, 12);
 	add_back(&a, -1);
 	add_back(&a, 0);
-	add_back(&a, 26);
+	add_back(&a, -26);
 	b = stack_min(a);
 
-	printf("%d\n", get_index(a, b));
-	printf("%d\n", a->n);
+	printf("%d\n", count_move_to_top(&a, b));
 	/*while(a)
 	{
 		printf("%d\n", a->n);

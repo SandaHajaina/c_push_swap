@@ -27,8 +27,9 @@ typedef struct s_stack
 //algorithm
 void	sort_stack(t_stack **a, t_stack **b);
 int		find_rank(t_stack **stack, t_stack *to_find);
-t_stack	*find_position(t_stack **stack, t_stack *to_find);
+t_stack	*find_target(t_stack **stack, t_stack *to_find);
 int		get_index(t_stack *stack, t_stack *to_find);
+int		count_move(t_stack **stack, t_stack *to_find);
 
 //operations
 void	swap(t_stack	**stack);

@@ -29,7 +29,7 @@ int	find_rank(t_stack **stack, t_stack *to_find)
 	return (i);
 }
 
-t_stack	*find_position(t_stack **stack, t_stack *to_find)
+t_stack	*find_target(t_stack **stack, t_stack *to_find)
 {
 	int		n;
 	t_stack	*prev;
@@ -47,24 +47,40 @@ t_stack	*find_position(t_stack **stack, t_stack *to_find)
 	return (prev);
 }
 
-/*t_stack	*find_cheapest(t_stack **a, t_stack **b)
+int	count_move(t_stack **stack, t_stack *to_find)
 {
-	int		step;
-	t_stack	*cheapest;
-	t_stack	*temp;
-	t_stack	*pos;
+	int	move;
+	int	median;
+	int	index;
+	int	nb;
 
-	step = 0;
-	temp = *a;
-	pos = NULL;
-	cheapest = temp;
-	if (!(*a) || !(*b))
-		return ;
-	while(temp)
+	move = 0;
+	nb = count_node(*stack);
+	median = nb / 2;
+	index = get_index(*stack, to_find);
+	if (index < median)
+		move = index;
+	else
+		move = nb - index;
+	return (move);
+}
+
+t_stack	*find_cheapest(t_stack **a, t_stack **b)
+{
+	int		move;
+	t_stack *tmp;
+	t_stack	*target;
+	t_stack	*cheapest;
+
+	tmp = *a;
+	while(tmp)
 	{
-		pos = find_position(*b, temp);
+		target = find_target(*b, tmp);
+		if (!move || )
+		move = count_move(*a, tmp) + count_move(*b, target);
+		tmp = tmp->next;
 	}
-}*/
+}
 
 int	get_index(t_stack *stack, t_stack *to_find)
 {
