@@ -17,22 +17,32 @@ int	main(void)
 	t_stack	*a;
 	t_stack	*min;
 	t_stack	*b;
+	t_stack	*c;
 
-	a = stack_new(200);
-	add_back(&a, -10);
-	add_back(&a, 6);
+	a = stack_new(3);
 	add_back(&a, 9);
-	add_back(&a, 20);
-	add_back(&a, 12);
-	add_back(&a, -1);
-	add_back(&a, 0);
-	add_back(&a, -26);
-	b = stack_min(a);
+	add_back(&a, 4);
+	add_back(&a, 8);
+	//add_back(&a, 18);
 
-	printf("%d\n", count_move_to_top(&a, b));
-	/*while(a)
+	b = stack_new(7);
+	add_back(&b, 5);
+
+	printf("%d\n", find_cheapest(&a, &b)->n);
+	
+	//push_to_b(&a, &b);
+	//sort_three(&a);
+
+	/*printf("====A====\n");
+	while(a)
 	{
 		printf("%d\n", a->n);
 		a = a->next;
+	}
+	printf("====B====\n");
+	while(b)
+	{
+		printf("%d\n", b->n);
+		b = b->next;
 	}*/
 }

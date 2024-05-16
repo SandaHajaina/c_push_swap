@@ -29,7 +29,10 @@ void	sort_stack(t_stack **a, t_stack **b);
 int		find_rank(t_stack **stack, t_stack *to_find);
 t_stack	*find_target(t_stack **stack, t_stack *to_find);
 int		get_index(t_stack *stack, t_stack *to_find);
-int		count_move(t_stack **stack, t_stack *to_find);
+int		count_move(t_stack *stack, t_stack *to_find);
+t_stack	*find_cheapest(t_stack **a, t_stack **b);
+void	push_to_b(t_stack **a, t_stack **b);
+void	push_to_a(t_stack **a, t_stack **b);
 
 //operations
 void	swap(t_stack	**stack);

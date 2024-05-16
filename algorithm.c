@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+/* retourne le rank de *to_find */
 int	find_rank(t_stack **stack, t_stack *to_find)
 {
 	int		i;
@@ -29,16 +30,19 @@ int	find_rank(t_stack **stack, t_stack *to_find)
 	return (i);
 }
 
+// cherche le target node de *to_find
 t_stack	*find_target(t_stack **stack, t_stack *to_find)
 {
 	int		n;
 	t_stack	*prev;
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = *stack;
 	prev = stack_min(*stack);
 	n = to_find->n;
-	while(temp)
+	if (n < prev->n)
+		return (stack_max(*stack));
+	while (temp)
 	{
 		if ((temp->n < n) && (temp->n > prev->n))
 			prev = temp;
@@ -47,7 +51,8 @@ t_stack	*find_target(t_stack **stack, t_stack *to_find)
 	return (prev);
 }
 
-int	count_move(t_stack **stack, t_stack *to_find)
+// compte le nb de move pour palcer *to_find au top du stack
+int	count_move(t_stack *stack, t_stack *to_find)
 {
 	int	move;
 	int	median;
@@ -55,9 +60,9 @@ int	count_move(t_stack **stack, t_stack *to_find)
 	int	nb;
 
 	move = 0;
-	nb = count_node(*stack);
+	nb = count_node(stack);
 	median = nb / 2;
-	index = get_index(*stack, to_find);
+	index = get_index(stack, to_find);
 	if (index < median)
 		move = index;
 	else
@@ -65,23 +70,34 @@ int	count_move(t_stack **stack, t_stack *to_find)
 	return (move);
 }
 
+// recherche le champion
 t_stack	*find_cheapest(t_stack **a, t_stack **b)
 {
 	int		move;
-	t_stack *tmp;
+	int		min;
+	t_stack	*tmp;
 	t_stack	*target;
-	t_stack	*cheapest;
+	t_stack	*champion;
 
 	tmp = *a;
-	while(tmp)
+	min = count_node(*a) / 2;
+	champion = *a;
+	while (tmp)
 	{
-		target = find_target(*b, tmp);
-		if (!move || )
+		target = find_target(b, tmp);
 		move = count_move(*a, tmp) + count_move(*b, target);
+		printf("nb:%d | move: %d\n", tmp->n, move);
+		if (move < min)
+		{
+			min = tmp->n;
+			champion = tmp;
+		}
 		tmp = tmp->next;
 	}
+	return (champion);
 }
 
+// get the index
 int	get_index(t_stack *stack, t_stack *to_find)
 {
 	int		i;
@@ -89,7 +105,7 @@ int	get_index(t_stack *stack, t_stack *to_find)
 
 	temp = stack;
 	i = 0;
-	while(temp != to_find)
+	while (temp != to_find)
 	{
 		i++;
 		temp = temp->next;
@@ -97,40 +113,53 @@ int	get_index(t_stack *stack, t_stack *to_find)
 	return (i);
 }
 
-/*void	push_to_b(t_stack **a, t_stack **b)
-{
-	while(count_node(*a) != 3)
-	{
-
-	}
-}*/
-
-void	sort_stack(t_stack **a, t_stack **b)
+//push to b 'till 3
+void	push_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
-	int		median;
+	t_stack	*target;
+	int		i;
 
-	if (count_node(*a) == 3)
+	i = count_node(*a);
+	while(i > 3)
 	{
-		sort_three(a);
-		return ;
-	}
-	while (*a)
-	{
-		min = stack_min(*a);
-		median = count_node(*a) / 2;
-		if (find_rank(a, min) >= median)
-		{
-			while (*a != min)
+		min = find_cheapest(a, b);
+		if (find_rank(a, min) >= (count_node(*a) / 2))
+			while(*a != min)
 				ra(a);
-		}
 		else
-		{
-			while (*a != min)
+			while(*a != min)
 				rra(a);
-		}
+		target = find_target(b, min);
+		if (find_rank(b, target) >= (count_node(*b) / 2))
+			while(*b != target)
+				rb(b);
+		else
+			while(*b != target)
+				rrb(b);
 		pb(a, b);
+		i--;
 	}
-	while (*b)
-		pa(b, a);
 }
+
+void	push_to_a(t_stack **a, t_stack **b)
+{
+	t_stack	*target;
+
+	while(*b)
+	{
+		target = find_target(a, *b);
+		if (find_rank(a, target) >= (count_node(*a) / 2))
+			while(*a != target)
+				ra(a);
+		else
+			while(*a != target)
+				rra(a);
+		pa(b, a);
+	}
+}
+
+/*void	sort_stack(t_stack **a, t_stack **b)
+{
+	if(count_node())
+}*/
