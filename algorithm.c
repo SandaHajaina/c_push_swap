@@ -86,8 +86,7 @@ t_stack	*find_cheapest(t_stack **a, t_stack **b)
 	{
 		target = find_target(b, tmp);
 		move = count_move(*a, tmp) + count_move(*b, target);
-		printf("nb:%d | move: %d\n", tmp->n, move);
-		if (move < min)
+		if (move > min)
 		{
 			min = tmp->n;
 			champion = tmp;
