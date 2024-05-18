@@ -30,7 +30,7 @@ int	find_rank(t_stack **stack, t_stack *to_find)
 	return (i);
 }
 
-// cherche le target node de *to_find
+// cherche le target node de *to_find (from a to b)
 t_stack	*find_target(t_stack **stack, t_stack *to_find)
 {
 	int		n;
@@ -63,7 +63,7 @@ int	count_move(t_stack *stack, t_stack *to_find)
 	nb = count_node(stack);
 	median = nb / 2;
 	index = get_index(stack, to_find);
-	if (index < median)
+	if (index <= median)
 		move = index;
 	else
 		move = nb - index;
@@ -86,9 +86,9 @@ t_stack	*find_cheapest(t_stack **a, t_stack **b)
 	{
 		target = find_target(b, tmp);
 		move = count_move(*a, tmp) + count_move(*b, target);
-		if (move > min)
+		if (move < min)
 		{
-			min = tmp->n;
+			min = move;
 			champion = tmp;
 		}
 		tmp = tmp->next;
@@ -123,14 +123,14 @@ void	push_to_b(t_stack **a, t_stack **b)
 	while(i > 3)
 	{
 		min = find_cheapest(a, b);
-		if (find_rank(a, min) >= (count_node(*a) / 2))
+		if ((find_rank(a, min) + 1) <= (count_node(*a) / 2))
 			while(*a != min)
 				ra(a);
 		else
 			while(*a != min)
 				rra(a);
 		target = find_target(b, min);
-		if (find_rank(b, target) >= (count_node(*b) / 2))
+		if ((find_rank(b, target) + 1) <= (count_node(*b) / 2))
 			while(*b != target)
 				rb(b);
 		else
@@ -141,14 +141,35 @@ void	push_to_b(t_stack **a, t_stack **b)
 	}
 }
 
+t_stack	*find_position(t_stack **stack, t_stack *to_find)
+{
+	int		n;
+	t_stack	*next;
+	t_stack	*temp;
+
+	temp = *stack;
+	next = stack_max(*stack);
+	n = to_find->n;
+	if (n > next->n)
+		return (stack_min(*stack));
+	while (temp)
+	{
+		if ((temp->n > n) && (temp->n < next->n))
+			next = temp;
+		temp = temp->next;
+	}
+	return (next);
+}
+
 void	push_to_a(t_stack **a, t_stack **b)
 {
 	t_stack	*target;
+	t_stack	*min;
 
 	while(*b)
 	{
-		target = find_target(a, *b);
-		if (find_rank(a, target) >= (count_node(*a) / 2))
+		target = find_position(a, *b);
+		if (find_rank(a, target) <= (count_node(*a) / 2))
 			while(*a != target)
 				ra(a);
 		else
@@ -156,9 +177,36 @@ void	push_to_a(t_stack **a, t_stack **b)
 				rra(a);
 		pa(b, a);
 	}
+	min = stack_min(*a);
+	if ((find_rank(a, min) + 1) <= (count_node(*a) / 2))
+		while(*a != min)
+			ra(a);
+	else
+		while(*a != min)
+			rra(a);
 }
 
-/*void	sort_stack(t_stack **a, t_stack **b)
+void	sort_stack(t_stack **a, t_stack **b)
 {
-	if(count_node())
-}*/
+	if (count_node(*a) == 2)
+	{
+		if (!check_sorted(a))
+			sa(a);
+		return ;
+	}
+	else if (count_node(*a) == 3)
+	{
+		sort_three(a);
+		return ;
+	}
+	else if (count_node(*a) == 4)
+		pb(a, b);
+	else
+	{
+		pb(a, b);
+		pb(a, b);
+	}
+	push_to_b(a, b);
+	sort_three(a);
+	push_to_a(a, b);
+}
