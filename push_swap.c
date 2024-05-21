@@ -40,7 +40,7 @@ int	main(void)
 	t_stack	*a;
 	t_stack	*b;
 
-	int n = 98;
+	int n = 99;
     int liste[100];
 
     // Initialiser le générateur de nombres aléatoires
@@ -54,20 +54,13 @@ int	main(void)
     }
 
 	b = NULL;
-	b = stack_new(620);
 
-	push_to_b(&a, &b);
+	sort_stack(&a, &b);
 
-	//printf("====A====\n");
-	/*while(a)
+	printf("====A====\n");
+	while(a)
 	{
 		printf("%d\n", a->n);
 		a = a->next;
-	}*/
-	printf("====B====\n");
-	while(b)
-	{
-		printf("%d\n", b->n);
-		b = b->next;
 	}
 }

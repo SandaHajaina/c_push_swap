@@ -61,6 +61,7 @@ t_stack	*stack_last(t_stack	*stack);
 void	add_back(t_stack **stack, int n);
 void	add_front(t_stack **stack, int n);
 int		count_node(t_stack *stack);
+int		check_duplicate(t_stack **stack);
 
 //free
 void	free_stack(t_stack **stack);

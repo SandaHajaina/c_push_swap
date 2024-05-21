@@ -30,3 +30,25 @@ int	check_sorted(t_stack **stack)
 	}
 	return (1);
 }
+
+int	check_duplicate(t_stack **stack)
+{
+	t_stack	*temp;
+	t_stack	*left;
+	int		n;
+
+	temp = *stack;
+	while (temp)
+	{
+		left = (temp)->next;
+		n = temp->n;
+		while (left)
+		{
+			if (n == left->n)
+				return (0);
+			left = left->next;
+		}
+		temp = temp->next;
+	}
+	return (1);
+}

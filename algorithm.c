@@ -70,6 +70,34 @@ int	count_move(t_stack *stack, t_stack *to_find)
 	return (move);
 }
 
+static	int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+int count_total_move(t_stack **a, t_stack **b, t_stack *node, t_stack *target)
+{
+	int	index_a;
+	int	index_b;
+	int	median_a;
+	int	median_b;
+	int	move;
+
+	index_a = find_rank(a, node);
+	index_b = find_rank(b, target);
+	median_a = count_node(*a) / 2;
+	median_b = count_node(*b) / 2;
+	if(index_a <= median_a && index_b <= median_b)
+		move = max(count_move(*a, node), count_move(*b, target));
+	else if (index_a > median_a && index_b > median_b)
+		move = max(count_move(*a, node), count_move(*b, target));
+	else
+		move = count_move(*a, node) + count_move(*b, target);
+	return (move);
+}
+
 // recherche le champion
 t_stack	*find_cheapest(t_stack **a, t_stack **b)
 {
@@ -85,7 +113,7 @@ t_stack	*find_cheapest(t_stack **a, t_stack **b)
 	while (tmp)
 	{
 		target = find_target(b, tmp);
-		move = count_move(*a, tmp) + count_move(*b, target);
+		move = count_total_move(a, b, tmp, target);
 		if (move < min)
 		{
 			min = move;
@@ -111,6 +139,23 @@ int	get_index(t_stack *stack, t_stack *to_find)
 	}
 	return (i);
 }
+
+// static void	push_b(t_stack **a, t_stack **b)
+// {
+// 	t_stack *min;
+// 	t_stack	*target;
+// 	int		median_a;
+// 	int		median_b;
+
+// 	min = find_cheapest(a, b);
+// 	target = find_target(b, min);
+// 	median_a = count_node(*a) / 2;
+// 	median_b = count_node(*b) / 2;
+// 	if (find_rank(a, min) <= median_a && find_rank(b, target) <= median_b)
+// 		while (*a != min)
+// 		{
+// 		}
+// }
 
 //push to b 'till 3
 void	push_to_b(t_stack **a, t_stack **b)
