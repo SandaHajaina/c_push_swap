@@ -41,13 +41,13 @@ int	main(void)
 	t_stack	*b;
 
 	int n = 99;
-    int liste[100];
+    int liste[99];
 
     // Initialiser le générateur de nombres aléatoires
     srand(time(NULL));
     genererListeAleatoire(liste, n);
 
-	a = stack_new(201);
+	a = stack_new(500);
 	// Imprimer les lignes add_back(&a, <number>);
     for (int i = 0; i < n; i++) {
         add_back(&a, liste[i]);
@@ -56,11 +56,4 @@ int	main(void)
 	b = NULL;
 
 	sort_stack(&a, &b);
-
-	printf("====A====\n");
-	while(a)
-	{
-		printf("%d\n", a->n);
-		a = a->next;
-	}
 }

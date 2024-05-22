@@ -140,22 +140,72 @@ int	get_index(t_stack *stack, t_stack *to_find)
 	return (i);
 }
 
-// static void	push_b(t_stack **a, t_stack **b)
-// {
-// 	t_stack *min;
-// 	t_stack	*target;
-// 	int		median_a;
-// 	int		median_b;
+static t_stack	*get_the_node(t_stack **a, t_stack **b, t_stack *x, t_stack *y)
+{
+	if (find_rank(a, x) <= find_rank(b, y))
+		return (x);
+	return (y);
+}
 
-// 	min = find_cheapest(a, b);
-// 	target = find_target(b, min);
-// 	median_a = count_node(*a) / 2;
-// 	median_b = count_node(*b) / 2;
-// 	if (find_rank(a, min) <= median_a && find_rank(b, target) <= median_b)
-// 		while (*a != min)
-// 		{
-// 		}
-// }
+int	is_there(t_stack **a, t_stack *node)
+{
+	t_stack	*tmp;
+
+	tmp = *a;
+	while (tmp)
+	{
+		if (node == tmp)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+static void	rr_before_push(t_stack **a, t_stack **b, t_stack *min)
+{
+	t_stack	*target;
+	t_stack	*the_node;
+	int		median_a;
+	int		median_b;
+
+	target = find_target(b, min);
+	median_a = count_node(*a) / 2;
+	median_b = count_node(*b) / 2;
+	if (find_rank(a, min) <= median_a && find_rank(b, target) <= median_b)
+	{
+		the_node = get_the_node(a, b, min, target);
+		if (is_there(a, the_node))
+			while (*a != the_node)
+				rr(a, b);
+		else
+			while (*b != the_node)
+				rr(a, b);
+	}
+	return ;
+}
+
+static void	rrr_before_push(t_stack **a, t_stack **b, t_stack *min)
+{
+	t_stack	*target;
+	t_stack	*the_node;
+	int		median_a;
+	int		median_b;
+
+	target = find_target(b, min);
+	median_a = count_node(*a) / 2;
+	median_b = count_node(*b) / 2;
+	if (find_rank(a, min) > median_a && find_rank(b, target) > median_b)
+	{
+		the_node = get_the_node(a, b, min, target);
+		if (is_there(a, the_node))
+			while (*a != the_node)
+				rrr(a, b);
+		else
+			while (*b != the_node)
+				rrr(a, b);
+	}
+	return ;
+}
 
 //push to b 'till 3
 void	push_to_b(t_stack **a, t_stack **b)
@@ -168,14 +218,16 @@ void	push_to_b(t_stack **a, t_stack **b)
 	while(i > 3)
 	{
 		min = find_cheapest(a, b);
-		if ((find_rank(a, min) + 1) <= (count_node(*a) / 2))
+		rr_before_push(a, b, min);
+		rrr_before_push(a, b, min);
+		if ((find_rank(a, min)) <= (count_node(*a) / 2))
 			while(*a != min)
 				ra(a);
 		else
 			while(*a != min)
 				rra(a);
 		target = find_target(b, min);
-		if ((find_rank(b, target) + 1) <= (count_node(*b) / 2))
+		if ((find_rank(b, target)) <= (count_node(*b) / 2))
 			while(*b != target)
 				rb(b);
 		else
