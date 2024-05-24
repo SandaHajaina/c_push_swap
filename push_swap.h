@@ -24,6 +24,8 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
+void    print_stack(t_stack *a, t_stack *b);
+
 //algorithm
 void	sort_stack(t_stack **a, t_stack **b);
 int		find_rank(t_stack **stack, t_stack *to_find);
