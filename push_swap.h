@@ -15,23 +15,23 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_stack
 {
 	int				n;
-	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
-void    print_stack(t_stack *a, t_stack *b);
+void	print_stack(t_stack *a, t_stack *b);
 
 //algorithm
 void	sort_stack(t_stack **a, t_stack **b);
 int		find_rank(t_stack **stack, t_stack *to_find);
 t_stack	*find_target(t_stack **stack, t_stack *to_find);
+t_stack	*find_position(t_stack **stack, t_stack *to_find);
 int		get_index(t_stack *stack, t_stack *to_find);
 int		count_move(t_stack *stack, t_stack *to_find);
+int		total_move(t_stack **a, t_stack **b, t_stack *node, t_stack *target);
 t_stack	*find_cheapest(t_stack **a, t_stack **b);
 void	push_to_b(t_stack **a, t_stack **b);
 void	push_to_a(t_stack **a, t_stack **b);
@@ -64,13 +64,12 @@ void	add_back(t_stack **stack, int n);
 void	add_front(t_stack **stack, int n);
 int		count_node(t_stack *stack);
 int		check_duplicate(t_stack **stack);
-int		is_there(t_stack **a, t_stack *node);
+int		max(int a, int b);
+int		check_sorted(t_stack **stack);
+int		get_median(t_stack *stack);
 
 //free
 void	free_stack(t_stack **stack);
-
-//check_sorted
-int	check_sorted(t_stack **stack);
 
 //find min | max
 t_stack	*stack_max(t_stack *stack);

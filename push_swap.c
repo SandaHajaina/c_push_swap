@@ -11,68 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
-#include <time.h>
-
-void	print_stack(t_stack *a, t_stack *b)
-{
-	t_stack	*x;
-	t_stack	*y;
-
-	if (!a)
-		return ;
-	x = a;
-	y = b;
-	printf("====A====|====B====\n");
-	while (1)
-	{
-		if (x)
-		{
-			printf("    %d     ", x->n);
-			x = x->next;
-		}
-		else
-			printf("          ");
-		if (y)
-		{
-			printf("    %d    ", y->n);
-			y = y->next;
-		}
-		printf("\n");
-		if (x == NULL && y == NULL)
-		{
-			break ;
-		}
-	}
-}
-
-// Fonction pour échanger deux nombres
-void	echanger(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-// Fonction pour générer une liste aléatoire de n éléments sans redondance
-void	genererListeAleatoire(int *liste, int n)
-{
-	int	j;
-
-	// Initialiser la liste avec des valeurs de 1 à n
-	for (int i = 0; i < n; i++)
-	{
-		liste[i] = i + 1;
-	}
-	// Mélanger les éléments de la liste pour les rendre aléatoires
-	for (int i = 0; i < n; i++)
-	{
-		j = rand() % n;
-		echanger(&liste[i], &liste[j]);
-	}
-}
 
 int	main(int argc, char **argv)
 {
@@ -93,31 +31,6 @@ int	main(int argc, char **argv)
 	}
 	b = NULL;
 	sort_stack(&a, &b);
+	free_stack(&a);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	t_stack	*a;
-// 	t_stack	*b;
-
-// 	int n = 499;
-//     int liste[499];
-
-//     // Initialiser le générateur de nombres aléatoires
-//     srand(time(NULL));
-//     genererListeAleatoire(liste, n);
-
-// 	a = stack_new(500);
-
-// 	// Imprimer les lignes add_back(&a, <number>);
-//     for (int i = 0; i < n; i++) {
-//         add_back(&a, liste[i]);
-//     }
-
-// 	b = NULL;
-
-// 	sort_stack(&a, &b);
-
-//     //print_stack(a, b);
-// }
