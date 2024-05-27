@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-// push to b 'till 3
+// push to b 'till 3 numbers left
 void	push_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
@@ -26,42 +26,12 @@ void	push_to_b(t_stack **a, t_stack **b)
 		target = find_target(b, min);
 		if (find_rank(a, min) > get_median(*a) && find_rank(b,
 				target) > get_median(*b))
-		{
-			while (*a != min && *b != target)
-				rrr(a, b);
-			while (*a != min)
-				rra(a);
-			while (*b != target)
-				rrb(b);
-			pb(a, b);
-			i--;
-			continue ;
-		}
-		if (find_rank(a, min) < get_median(*a) && find_rank(b,
+			execute_case_rrr(a, b, min, target);
+		else if (find_rank(a, min) < get_median(*a) && find_rank(b,
 				target) < get_median(*b))
-		{
-			while (*a != min && *b != target)
-				rr(a, b);
-			while (*a != min)
-				ra(a);
-			while (*b != target)
-				rb(b);
-			pb(a, b);
-			i--;
-			continue ;
-		}
-		if (find_rank(a, min) <= get_median(*a))
-			while (*a != min)
-				ra(a);
+			execute_case_rr(a, b, min, target);
 		else
-			while (*a != min)
-				rra(a);
-		if (find_rank(b, target) <= get_median(*b))
-			while (*b != target)
-				rb(b);
-		else
-			while (*b != target)
-				rrb(b);
+			execute_case_ra_rb(a, b, min, target);
 		pb(a, b);
 		i--;
 	}

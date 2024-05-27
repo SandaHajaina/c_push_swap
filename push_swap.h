@@ -36,6 +36,14 @@ t_stack	*find_cheapest(t_stack **a, t_stack **b);
 void	push_to_b(t_stack **a, t_stack **b);
 void	push_to_a(t_stack **a, t_stack **b);
 
+//execute move
+void	execute_case_rrr(t_stack **a, t_stack **b,
+			t_stack *min, t_stack *target);
+void	execute_case_rr(t_stack **a, t_stack **b,
+			t_stack *min, t_stack *target);
+void	execute_case_ra_rb(t_stack **a, t_stack **b,
+			t_stack *min, t_stack *target);
+
 //operations
 void	swap(t_stack	**stack);
 void	push(t_stack **src, t_stack **target);
@@ -67,6 +75,12 @@ int		check_duplicate(t_stack **stack);
 int		max(int a, int b);
 int		check_sorted(t_stack **stack);
 int		get_median(t_stack *stack);
+
+// input utils
+int		ft_strlen(const char *s);
+char	**ft_split(char const *s, char c);
+int		ft_atoi(const char *nptr);
+int 	is_number(char *str);
 
 //free
 void	free_stack(t_stack **stack);
