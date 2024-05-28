@@ -24,10 +24,10 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-static char	*ft_substr(char const *s, unsigned int start, int len)
+static char	*ft_substr(char const *s, int start, int len)
 {
-	char			*str;
-	unsigned int	i;
+	char	*str;
+	int		i;
 
 	if (start >= ft_strlen(s))
 		len = 0;

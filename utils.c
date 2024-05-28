@@ -40,6 +40,11 @@ void	add_back(t_stack **stack, int n)
 
 	if (!stack)
 		return ;
+	if (*stack == NULL)
+	{
+		*stack = stack_new(n);
+		return ;
+	}
 	new = stack_new(n);
 	temp = stack_last(*stack);
 	temp->next = new;

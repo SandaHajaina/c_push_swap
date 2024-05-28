@@ -22,8 +22,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-void	print_stack(t_stack *a, t_stack *b);
-
 //algorithm
 void	sort_stack(t_stack **a, t_stack **b);
 int		find_rank(t_stack **stack, t_stack *to_find);
@@ -71,16 +69,19 @@ t_stack	*stack_last(t_stack	*stack);
 void	add_back(t_stack **stack, int n);
 void	add_front(t_stack **stack, int n);
 int		count_node(t_stack *stack);
-int		check_duplicate(t_stack **stack);
 int		max(int a, int b);
 int		check_sorted(t_stack **stack);
 int		get_median(t_stack *stack);
 
 // input utils
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *s);
 int		ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *nptr);
-int 	is_number(char *str);
+
+//check error
+int		check_error(char **n);
 
 //free
 void	free_stack(t_stack **stack);
