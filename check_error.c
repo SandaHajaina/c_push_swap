@@ -41,20 +41,22 @@ static int	check_number(char **n)
 
 static int	check_duplicate(char **n)
 {
-	int	i;
-	int	j;
-	int	a;
-	int	b;
+	int		i;
+	int		j;
+	long	a;
+	long	b;
 
 	i = -1;
 	while (n[++i])
 	{
 		j = i;
+		a = ft_atoi(n[i]);
+		if (a > INT_MAX || a < INT_MIN)
+			return (0);
 		while (n[++j])
 		{
-			a = ft_atoi(n[i]);
 			b = ft_atoi(n[j]);
-			if ((int)a == (int)b)
+			if (a == b)
 				return (0);
 		}
 	}

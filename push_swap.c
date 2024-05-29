@@ -59,6 +59,19 @@ static void	fill_stack(t_stack **a, char **n)
 	}
 }
 
+static int	check_arg(char **argv)
+{
+	int	i;
+
+	i = -1;
+	while (argv[++i])
+	{
+		if (argv[i][0] == '\0')
+			return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*a;
@@ -69,6 +82,11 @@ int	main(int argc, char *argv[])
 	b = NULL;
 	if (argc > 1)
 	{
+		if (check_arg(argv))
+		{
+			write(0, "Error\n", 6);
+			return (0);
+		}
 		n = parse_input(argc, argv);
 		if (check_error(n))
 		{

@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -78,7 +79,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
 int		ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 
 //check error
 int		check_error(char **n);
