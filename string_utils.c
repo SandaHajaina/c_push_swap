@@ -53,3 +53,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	str[i] = '\0';
 	return (str);
 }
+
+void	free_array(char **n)
+{
+	int	i;
+
+	i = -1;
+	while (n[++i])
+		free(n[i]);
+	free(n);
+	return ;
+}

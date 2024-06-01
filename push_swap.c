@@ -47,7 +47,7 @@ char	**parse_input(int argc, char *argv[])
 	return (n);
 }
 
-static void	fill_stack(t_stack **a, char **n)
+static void	fill_sort_stack(t_stack **a, t_stack **b, char **n)
 {
 	int	i;
 
@@ -57,6 +57,9 @@ static void	fill_stack(t_stack **a, char **n)
 		add_back(a, ft_atoi(n[i]));
 		free(n[i++]);
 	}
+	free(n);
+	sort_stack(a, b);
+	free_stack(a);
 }
 
 static int	check_arg(char **argv)
@@ -91,12 +94,10 @@ int	main(int argc, char *argv[])
 		if (check_error(n))
 		{
 			write(0, "Error\n", 6);
-			return (free(n), 0);
+			free_array(n);
+			return (0);
 		}
-		fill_stack(&a, n);
-		free(n);
-		sort_stack(&a, &b);
-		free_stack(&a);
+		fill_sort_stack(&a, &b, n);
 	}
 	return (0);
 }

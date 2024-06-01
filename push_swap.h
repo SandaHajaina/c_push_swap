@@ -80,6 +80,7 @@ char	*ft_strdup(const char *s);
 int		ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 long	ft_atoi(const char *nptr);
+void	free_array(char **n);
 
 //check error
 int		check_error(char **n);
